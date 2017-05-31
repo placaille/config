@@ -10,10 +10,10 @@ Plugin 'jimf/vim-pep8-text-width'	" pep8 for python
 Plugin 'tomasr/molokai'				" Color scheme
 Plugin 'scrooloose/nerdtree'		" File explorer
 Plugin 'tpope/vim-commentary'		" Commenter
-Plugin 'mru.vim'					" Tracks most recent files
 Plugin 'vim-airline/vim-airline'	" airline status bar
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'			" Git wrapper
+Plugin 'ctrlpvim/ctrlp.vim'				" Fuzzy finder
 
 call vundle#end()
 
@@ -27,12 +27,6 @@ filetype plugin on
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-" if has("vms")
-    " set nobackup        " do not keep a backup file, use versions instead
-" else
-    " set backup        " keep a backup file
-    " set backupdir=~/.vim/backup
-" endif
 set nobackup
 
 set history=50		" keep 50 lines of command line history
@@ -57,6 +51,10 @@ inoremap <C-U> <C-G>u<C-U>
 if has('mouse')
     set mouse=a
 endif
+
+" Change the default mapping and the default command to invoke CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -109,19 +107,18 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>knoremap <C-l> <C-w>l
 
-
 set clipboard=unnamedplus
 "
 " Training wheels!
 "
-"inoremap  <Up>     <NOP>
-"inoremap  <Down>   <NOP>
-"inoremap  <Left>   <NOP>
-"inoremap  <Right>  <NOP>
-"noremap   <Up>     <NOP>
-"noremap   <Down>   <NOP>
-"noremap   <Left>   <NOP>
-"noremap   <Right>  <NOP>
+inoremap  <Up>     <NOP>
+inoremap  <Down>   <NOP>
+inoremap  <Left>   <NOP>
+inoremap  <Right>  <NOP>
+noremap   <Up>     <NOP>
+noremap   <Down>   <NOP>
+noremap   <Left>   <NOP>
+noremap   <Right>  <NOP>
 syntax on
 set t_Co=256
 colorscheme molokai
