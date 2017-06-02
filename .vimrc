@@ -107,7 +107,7 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>knoremap <C-l> <C-w>l
 
-set clipboard=unnamedplus
+set clipboard=unnamed
 "
 " Training wheels!
 "
