@@ -12,6 +12,8 @@ Plugin 'scrooloose/nerdtree'		" File explorer
 Plugin 'tpope/vim-commentary'		" Commenter
 Plugin 'vim-airline/vim-airline'	" airline status bar
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'flazz/vim-colorschemes'
 Plugin 'tpope/vim-fugitive'			" Git wrapper
 Plugin 'ctrlpvim/ctrlp.vim'				" Fuzzy finder
 
@@ -33,6 +35,7 @@ set history=50		" keep 50 lines of command line history
 set ruler			" show the cursor position all the time
 set showcmd 		" display incomplete commands
 set incsearch		" do incremental searching
+set textwidth=79	" default line width (from python)
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -96,7 +99,8 @@ set noexpandtab
 set tabstop=4
 set shiftwidth=4
 set laststatus=2
-set number
+"set number  " show line index
+set relativenumber  " show relative line index
 let g:gist_open_browser_after_post = 1
 set list
 set listchars=tab:»\ ,trail:⋅,extends:❯,precedes:❮
@@ -121,10 +125,14 @@ noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
 syntax on
 set t_Co=256
-colorscheme molokai
+
+
 let g:airline_theme='wombat'
 let g:rehash256=1
-" set background=dark
+set background=dark
+let g:solarized_termcolors=256
+" colorscheme solarized
+colorscheme molokai
 set hlsearch
 
 " vp doesn't replace paste buffer
