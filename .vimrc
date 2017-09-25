@@ -12,15 +12,17 @@ Plugin 'scrooloose/nerdtree'		" File explorer
 Plugin 'tpope/vim-commentary'		" Commenter
 Plugin 'vim-airline/vim-airline'	" airline status bar
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'flazz/vim-colorschemes'
 Plugin 'tpope/vim-fugitive'			" Git wrapper
-Plugin 'ctrlpvim/ctrlp.vim'				" Fuzzy finder
+Plugin 'ctrlpvim/ctrlp.vim'			" Fuzzy finder
+Plugin 'jacob-ogre/vim-syncr'		" sftp tool
+Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
 call vundle#end()
 
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
+"
 set nocompatible
 
 scriptencoding utf-8
@@ -128,7 +130,6 @@ noremap   <Right>  <NOP>
 syntax on
 set t_Co=256
 
-
 let g:airline_theme='wombat'
 let g:rehash256=1
 set background=dark
@@ -136,6 +137,16 @@ let g:solarized_termcolors=256
 " colorscheme solarized
 colorscheme molokai
 set hlsearch
+
+" Settings for LaTeX
+autocmd FileType tex hi clear texItalStyle
+autocmd FileType tex hi clear texBoldStyle
+autocmd FileType tex hi clear texUnderlineStyle
+
+" options for markdown preview
+let vim_markdown_preview_browser='Google Chrome'
+let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_github=1
 
 " vp doesn't replace paste buffer
 function! RestoreRegister()
@@ -147,3 +158,4 @@ function! s:Repl()
   return "p@=RestoreRegister()\<cr>"
 endfunction
 vmap <silent> <expr> p <sid>Repl()
+
