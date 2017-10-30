@@ -17,6 +17,7 @@ Plugin 'ctrlpvim/ctrlp.vim'			" Fuzzy finder
 Plugin 'jacob-ogre/vim-syncr'		" sftp tool
 Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
+Plugin 'Townk/vim-autoclose'
 
 call vundle#end()
 
@@ -116,6 +117,9 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>knoremap <C-l> <C-w>l
 
 set clipboard=unnamed
+
+" spell checking params
+set spelllang=en_ca
 "
 " Training wheels!
 "
@@ -142,6 +146,7 @@ set hlsearch
 autocmd FileType tex hi clear texItalStyle
 autocmd FileType tex hi clear texBoldStyle
 autocmd FileType tex hi clear texUnderlineStyle
+" autocmd FileType tex setlocal spell spelllang=en_us
 
 " options for markdown preview
 let vim_markdown_preview_browser='Google Chrome'
