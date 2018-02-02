@@ -4,16 +4,13 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'			" let Vundle manage Vundle (required!)
-Plugin 'scrooloose/syntastic'		" Syntax
+Plugin 'gmarik/Vundle.vim'		" let Vundle manage Vundle (required!)
 Plugin 'jimf/vim-pep8-text-width'	" pep8 for python
 Plugin 'tomasr/molokai'				" Color scheme
 Plugin 'scrooloose/nerdtree'		" File explorer
 Plugin 'tpope/vim-commentary'		" Commenter
 Plugin 'vim-airline/vim-airline'	" airline status bar
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-fugitive'			" Git wrapper
-Plugin 'ctrlpvim/ctrlp.vim'			" Fuzzy finder
 Plugin 'jacob-ogre/vim-syncr'		" sftp tool
 Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
@@ -26,141 +23,71 @@ call vundle#end()
 "
 set nocompatible
 
+" ======= General settings =======
+set autochdir
+set noexpandtab
+set clipboard=unnamed
+syntax on
+set hlsearch "highlight all search hits
+
 scriptencoding utf-8
 set encoding=utf-8
 filetype plugin on
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
-set nobackup
-set noswapfile
-set nowritebackup
 
 set history=50		" keep 50 lines of command line history
-set ruler			" show the cursor position all the time
+set ruler		" show the cursor position all the time
 set showcmd 		" display incomplete commands
-set incsearch		" do incremental searching
-set textwidth=79	" default line width (from python)
+" set incsearch		" do incremental searching
+set number
+set ruler
+" set relativenumber  " show relative line index
 
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
-
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
-" Map Ctrl-n for toggling the directory tree
-map <C-n> :NERDTreeToggle<CR>
-
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
-
-" In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-    set mouse=a
-endif
-
-" Change the default mapping and the default command to invoke CtrlP
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
-    " Enable file type detection.
-    " Use the default filetype settings, so that mail gets 'tw' set to 72,
-    " 'cindent' is on in C files, etc.
-    " Also load indent files, to automatically do language-dependent indenting.
-    filetype plugin indent on
-    " Put these in an autocmd group, so that we can delete them easily.
-    augroup vimrcEx
-        au!
-        " For all text files set 'textwidth' to 78 characters.
-        autocmd FileType text setlocal textwidth=64
-        " When editing a file, always jump to the last known cursor position.
-        " Don't do it when the position is invalid or when inside an event handler
-        " (happens when dropping a file on gvim).
-        " Also don't do it when the mark is in the first line, that is the default
-        " position when opening a file.
-        autocmd BufReadPost *
-                    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-                    \   exe "normal! g`\"" |
-                    \ endif
-
-    augroup END
-else
-    set autoindent        " always set autoindenting on
-endif " has("autocmd")
-
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-    command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-                \ | wincmd p | diffthis
-endif
-set autochdir
-autocmd BufEnter * silent ! cd %:p:h
-set noexpandtab
-set tabstop=4
-set shiftwidth=4
-set laststatus=2
-"set number  " show line index
-set relativenumber  " show relative line index
 let g:gist_open_browser_after_post = 1
 set list
 set listchars=tab:»\ ,trail:⋅,extends:❯,precedes:❮
-"set showbreak=↪
-vnoremap < <gv
-vnoremap > >gv
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>knoremap <C-l> <C-w>l
+set backspace=indent,eol,start " allow backspacing over everything in insert mode
+set scrolloff=8 "Start scrolling when we're 8 lines away from margins
 
-set clipboard=unnamed
+" ===== Turn off swap files =====
+set nobackup
+set noswapfile
+set nowb
 
-" spell checking params
-set spelllang=en_ca
-"
-" Training wheels!
-"
-inoremap  <Up>     <NOP>
-inoremap  <Down>   <NOP>
-inoremap  <Left>   <NOP>
-inoremap  <Right>  <NOP>
-noremap   <Up>     <NOP>
-noremap   <Down>   <NOP>
-noremap   <Left>   <NOP>
-noremap   <Right>  <NOP>
-syntax on
+" ===== Python PEP8 settings =====
+autocmd Filetype python call SetPythonOptions()
+function SetPythonOptions()
+  set tabstop=4
+  set softtabstop=4
+  set shiftwidth=4
+  set textwidth=79
+  set expandtab
+  set autoindent
+  set fileformat=unix
+endfunction
+
+" ==== Nerd Tree settings =====
+" Map Ctrl-n for toggling the directory tree
+map <C-n> :NERDTreeToggle<CR>
+
+" ===== Colorschemes  =====
 set t_Co=256
-
-let g:airline_theme='wombat'
+let g:airline_theme='wombat' "tool bar
 let g:rehash256=1
 set background=dark
-let g:solarized_termcolors=256
-" colorscheme solarized
 colorscheme molokai
-set hlsearch
 
-" Settings for LaTeX
-autocmd FileType tex hi clear texItalStyle
-autocmd FileType tex hi clear texBoldStyle
-autocmd FileType tex hi clear texUnderlineStyle
-" autocmd FileType tex setlocal spell spelllang=en_us
+" ===== Spell checking params =====
+set spelllang=en_ca
 
-" options for markdown preview
+" ===== Settings for LaTeX =====
+autocmd FileType tex call SetLatexOptions()
+function SetLatexOptions()
+  hi clear texItalStyle
+  hi clear texBoldStyle
+  hi clear texUnderlineStyle
+endfunction
+
+" ===== Options for markdown preview =====
 let vim_markdown_preview_browser='Google Chrome'
 let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_github=1
-
-" vp doesn't replace paste buffer
-function! RestoreRegister()
-  let @" = s:restore_reg
-  return ''
-endfunction
-function! s:Repl()
-  let s:restore_reg = @"
-  return "p@=RestoreRegister()\<cr>"
-endfunction
-vmap <silent> <expr> p <sid>Repl()
-
