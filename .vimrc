@@ -48,6 +48,9 @@ set listchars=tab:»\ ,trail:⋅,extends:❯,precedes:❮
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set scrolloff=8 "Start scrolling when we're 8 lines away from margins
 
+" Set status line
+set laststatus=2
+
 " ===== Turn off swap files =====
 set nobackup
 set noswapfile
