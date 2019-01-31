@@ -1,7 +1,7 @@
 function fish_prompt --description 'Write out the prompt'
 
     # custom hostname
-    set -g __fish_prompt_hostname (hostname)
+    set -g __fish_prompt_hostname (hostname -s)
 
     # removed ifs for efficiency
     set -l last_status $status
