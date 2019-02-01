@@ -1,9 +1,5 @@
 function fish_prompt --description 'Write out the prompt'
 
-    # custom hostname
-    set -g __fish_prompt_hostname (hostname -s)
-
-    # removed ifs for efficiency
     set -l last_status $status
     set -g __fish_prompt_normal (set_color normal)
 
@@ -25,10 +21,10 @@ function fish_prompt --description 'Write out the prompt'
 
     # PWD
     set_color $color_cwd
-    echo -n "$__fish_prompt_hostname:"  # CUSTOM
+    echo -n (prompt_hostname):  # CUSTOM
     echo -n (prompt_pwd)
-    set_color normal
 
+    set_color normal
     printf '%s ' (__fish_vcs_prompt)
 
     if not test $last_status -eq 0
