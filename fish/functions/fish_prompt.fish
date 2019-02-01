@@ -1,5 +1,10 @@
+function _git_branch --description 'Custom function get branch'
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+end
+
 function fish_prompt --description 'Write out the prompt'
 
+    # removed ifs for efficiency
     set -l last_status $status
     set -g __fish_prompt_normal (set_color normal)
 
@@ -23,9 +28,9 @@ function fish_prompt --description 'Write out the prompt'
     set_color $color_cwd
     echo -n (prompt_hostname):  # CUSTOM
     echo -n (prompt_pwd)
-
     set_color normal
-    printf '%s ' (__fish_vcs_prompt)
+
+    printf '%s ' (_git_branch)
 
     if not test $last_status -eq 0
         set_color $fish_color_error
