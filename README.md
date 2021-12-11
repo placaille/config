@@ -15,17 +15,6 @@ cp vim/.vimrc ~/
 
 Finally, in vim, run `:PluginInstall` to install all plugins
 
-## Fish
-
-Includes prompt and color scheme
-```
-cp -r fish ~/.config/
-```
-
-## iTerm
-
-Load the config from the general page and point to `com.googlecode.iterm2.plist`. If not properly loaded, also import the color preset `Atom.itermcolors` from the _Profile->Colors_ menu.
-
 ## tmux
 tmux config
 ```
