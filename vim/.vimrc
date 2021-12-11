@@ -5,15 +5,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'		" let Vundle manage Vundle (required!)
-Plugin 'jimf/vim-pep8-text-width'	" pep8 for python
 Plugin 'tomasr/molokai'				" Color scheme
 Plugin 'scrooloose/nerdtree'		" File explorer
 Plugin 'tpope/vim-commentary'		" Commenter
 Plugin 'vim-airline/vim-airline'	" airline status bar
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'jacob-ogre/vim-syncr'		" sftp tool
-Plugin 'JamshedVesuna/vim-markdown-preview'
-Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'Townk/vim-autoclose'
 
 call vundle#end()
@@ -40,7 +36,7 @@ set showcmd 		" display incomplete commands
 " set incsearch		" do incremental searching
 set number
 set ruler
-" set relativenumber  " show relative line index
+set relativenumber  " show relative line index
 
 let g:gist_open_browser_after_post = 1
 set list
@@ -56,18 +52,6 @@ set nobackup
 set noswapfile
 set nowb
 
-" ===== Python PEP8 settings =====
-autocmd Filetype python call SetPythonOptions()
-function SetPythonOptions()
-  set tabstop=4
-  set softtabstop=4
-  set shiftwidth=4
-  set textwidth=79
-  set expandtab
-  set autoindent
-  set fileformat=unix
-endfunction
-
 " ==== Nerd Tree settings =====
 " Map Ctrl-n for toggling the directory tree
 map <C-n> :NERDTreeToggle<CR>
@@ -82,15 +66,14 @@ colorscheme molokai
 " ===== Spell checking params =====
 set spelllang=en_ca
 
-" ===== Settings for LaTeX =====
-autocmd FileType tex call SetLatexOptions()
-function SetLatexOptions()
-  hi clear texItalStyle
-  hi clear texBoldStyle
-  hi clear texUnderlineStyle
+" ===== Python PEP8 settings =====
+autocmd Filetype python call SetPythonOptions()
+function SetPythonOptions()
+  set tabstop=4
+  set softtabstop=4
+  set shiftwidth=4
+  set textwidth=79
+  set expandtab
+  set autoindent
+  set fileformat=unix
 endfunction
-
-" ===== Options for markdown preview =====
-let vim_markdown_preview_browser='Google Chrome'
-let vim_markdown_preview_hotkey='<C-m>'
-let vim_markdown_preview_github=1
